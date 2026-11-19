@@ -1,0 +1,43 @@
+{
+  "schema": "synth.jobs/v1",
+  "items": [
+    {
+      "id": "macropus-giganteus-taxon-ttl",
+      "kind": "compile",
+      "title": "Macropus giganteus taxon & biophysical Turtle",
+      "source_path": "eco-intent/macropus-giganteus/ontology/taxon.ttl",
+      "out_q42": "intenteco-mgig-11a-taxon.q42",
+      "interval_secs": 0,
+      "enabled": false,
+      "created_at": 1794987010,
+      "updated_at": 1794987295,
+      "next_run_at": 0,
+      "last_run_at": 1794987295,
+      "last_status": "ok",
+      "last_sha256": "f8acd0df7c0e10e2bdb1ad8f0c3c6f4de6089b0a46d8f00acac7fdf38dc520b4",
+      "last_q42": "C:\\github\\eco-intent\\macropus-giganteus\\dist\\taxon.q42",
+      "production_q42": "C:\\github\\synth\\production\\intenteco-mgig-11a-taxon.q42",
+      "quin_count": 553,
+      "run_count": 1
+    },
+    {
+      "id": "macropus-giganteus-index-ttl",
+      "kind": "compile",
+      "title": "Macropus giganteus DCAT index Turtle",
+      "source_path": "eco-intent/macropus-giganteus/ontology/index.ttl",
+      "out_q42": "intenteco-mgig-11a-index.q42",
+      "interval_secs": 0,
+      "enabled": false,
+      "created_at": 1794987010,
+      "updated_at": 1794987296,
+      "next_run_at": 0,
+      "last_run_at": 1794987296,
+      "last_status": "ok",
+      "last_sha256": "1d03cded20fb52eff1aee912b07d1fcfa80121eba61d462002d25974bfdbfdc1",
+      "last_q42": "C:\\github\\eco-intent\\macropus-giganteus\\dist\\index.q42",
+      "production_q42": "C:\\github\\synth\\production\\intenteco-mgig-11a-index.q42",
+      "quin_count": 76,
+      "run_count": 1
+    }
+  ]
+}

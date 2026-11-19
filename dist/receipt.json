@@ -1,0 +1,142 @@
+{
+  "binary": {
+    "path": "C:\\github\\synth\\target-prod\\debug\\synth-mcp.exe",
+    "sha256": "e2d9c98fd81cd7910a099275153a262c196ec25f24c8f5995f863a72a22e8f46",
+    "version": "0.1.0"
+  },
+  "catalog": {
+    "count": 150,
+    "sha256": "a23d4087e6d3327695f24297a0cf0a71021c40aaa24f1293d5e84a9924358d36"
+  },
+  "execution_host": "synth.production",
+  "handle_lifetime": "one source evaluation; only encoded resources in this receipt are durable",
+  "hmc": {
+    "bytes": 4111631,
+    "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp.hmc",
+    "sha256": "50a10f13d51d8688d55d31cafe52e42c69db078298f6193a6138cdf547365386"
+  },
+  "inputs": [],
+  "limits": {
+    "accounting_scope": "per-revision logical component allowances; overlapping candidates and clones are not a process-peak or allocator bound",
+    "asset_work_units": 500000000,
+    "combined_logical_budget_bytes": 312475648,
+    "effective_asset_work_units": 498489960,
+    "effective_host_bytes": 220114176,
+    "evaluation_steps": 1510040,
+    "evaluation_workspace_bytes": 44040192,
+    "package_bytes": 335544320,
+    "resource_bytes": 67108864,
+    "source_available_bytes": 2097152,
+    "source_bytes": 377510,
+    "source_reservation_bytes": 48321280,
+    "source_reservation_kind": "conservative logical estimate, not an allocator bound",
+    "source_work_units": 1510040,
+    "standalone_wire_bytes": 4194304,
+    "total_resource_bytes": 268435456
+  },
+  "native_reviews": [],
+  "presentation_path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp.html",
+  "producer": {
+    "id": "files",
+    "version": "2"
+  },
+  "quality_profile": "production16",
+  "requested_reviews": [
+    {
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp-review-0",
+      "resource": "macropus-giganteus.10d",
+      "status": "pending"
+    }
+  ],
+  "resources": [
+    {
+      "bytes": 90279,
+      "key": "blueprint.svg",
+      "kind": "svg",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\blueprint.svg",
+      "sha256": "45b1ff546509836aa30eab3a1af8d71dd9ae4e52b76d9359238344a7197f70db"
+    },
+    {
+      "bytes": 45419,
+      "key": "fur-colour.png",
+      "kind": "png",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\fur-colour.png",
+      "sha256": "0c0ab845f7e1ebb347430371375b8592f2ce809d6f3227bca6bf175aa66a3749"
+    },
+    {
+      "bytes": 41421,
+      "key": "fur-normal.png",
+      "kind": "png",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\fur-normal.png",
+      "sha256": "666b95195d87cc4c539b52766200ec1a705acf5fdb374849635aa78ec7b097dd"
+    },
+    {
+      "bytes": 15680,
+      "key": "fur-orm.png",
+      "kind": "png",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\fur-orm.png",
+      "sha256": "6e141fc9b9ebe403b4a81a629a51b0db7156d227921e45e70d798b333746e6d5"
+    },
+    {
+      "bytes": 1498,
+      "key": "hair-bsdf.png",
+      "kind": "png",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\hair-bsdf.png",
+      "sha256": "7735e0219e717ba8047e4fbdd71be418e96d44ea0651956168f421e9b33821c8"
+    },
+    {
+      "bytes": 868736,
+      "key": "macropus-giganteus-call.qac",
+      "kind": "qac",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\macropus-giganteus-call.qac",
+      "sha256": "d8e5b3e1fb3e70e1aeb27ebab9f75e55cdfcda94d681a04b435c9bbfefe9899d"
+    },
+    {
+      "bytes": 1578752,
+      "key": "macropus-giganteus-field.emf",
+      "kind": "emf",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\macropus-giganteus-field.emf",
+      "sha256": "2d1b6d75e56beea4049514200877f766311cbaccb16009598ee171ed63c3d4b9"
+    },
+    {
+      "bytes": 369328,
+      "key": "macropus-giganteus-pbr.10d",
+      "kind": "10d",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\macropus-giganteus-pbr.10d",
+      "sha256": "3ea7fa4efc15d41fa297fb98ad8172361b4033097366848a7c05f9cb91e5c990"
+    },
+    {
+      "bytes": 657856,
+      "key": "macropus-giganteus.10d",
+      "kind": "10d",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\macropus-giganteus.10d",
+      "sha256": "d90d0da775548e19106c7d04aa16f93ba268779f4439bd47d31c8dde9b72d634"
+    },
+    {
+      "bytes": 314,
+      "key": "rig-packet.json",
+      "kind": "json",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\rig-packet.json",
+      "sha256": "37795e6a2de5f47492629aa184d1562c25fd4d0fa0b756faa13216a1d72dcf29"
+    },
+    {
+      "bytes": 4372,
+      "key": "spectral-slice.png",
+      "kind": "png",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\spectral-slice.png",
+      "sha256": "1e12c1988fedb22bf0f408947640ee665d4b421535f2e383482f7b7e61258150"
+    },
+    {
+      "bytes": 54015,
+      "key": "turnaround.png",
+      "kind": "png",
+      "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\turnaround.png",
+      "sha256": "133eca46e0254f78be7fda53a9b3459cc67983c60915db5a74c476dad24b09b7"
+    }
+  ],
+  "review_status": "pending",
+  "schema": "synth.production-receipt/v1",
+  "source_sha256": "d9daf981cc5fd64da988c9f45bfe5391130f8b92e60e78d9c73cd3f66ee3ece9",
+  "strict_replay_verified": true,
+  "visual_acceptance": "pending inspection"
+}

@@ -1,0 +1,102 @@
+{
+  "schema": "intenteco.lod-manifest/v1",
+  "slug": "macropus-giganteus",
+  "did": "did:q42:taxon:macropus_giganteus",
+  "kingdom": "fauna",
+  "source_10d": {
+    "file": "macropus-giganteus.10d",
+    "bytes": 657856,
+    "sha256": "d90d0da775548e19106c7d04aa16f93ba268779f4439bd47d31c8dde9b72d634",
+    "vertices": 23600,
+    "triangles": 46152,
+    "bounds_min": [
+      -0.36000001430511475,
+      -0.009999999776482582,
+      -1.2799999713897705
+    ],
+    "bounds_max": [
+      0.36000001430511475,
+      1.7400000095367432,
+      0.4399999976158142
+    ]
+  },
+  "synth_hmc": "C:\\github\\synth\\production\\intenteco-lod-macropus-giganteus-1795048117-3873b4.hmc",
+  "synth_export_dir": "C:\\github\\synth\\production\\intenteco-lod-macropus-giganteus-1795048117-3873b4",
+  "lods": {
+    "lod0": {
+      "bytes": 607576,
+      "sha256": "cab28a21c360447610f83e063a28974b524662265dd8d3f0b2a9ccf3d53de6a7",
+      "vertices": 23600,
+      "triangles": 46152,
+      "bounds_min": [
+        -0.36000001430511475,
+        -0.009999999776482582,
+        -1.2799999713897705
+      ],
+      "bounds_max": [
+        0.36000001430511475,
+        1.7400000095367432,
+        0.4399999976158142
+      ],
+      "sections": [
+        "QuantizedMesh",
+        "FieldSidecar",
+        "SurfaceReading"
+      ],
+      "file": "macropus-giganteus-lod0.10d",
+      "distance_band_m": "0-25m",
+      "local_url": "/intenteco/macropus-giganteus/dist/lods/macropus-giganteus-lod0.10d",
+      "remote_url": "https://raw.githubusercontent.com/intenteco/macropus-giganteus/main/dist/lods/macropus-giganteus-lod0.10d"
+    },
+    "lod1": {
+      "bytes": 100788,
+      "sha256": "8ee1eb5f4af0292fb2517f3403795a93c62ee3b5e429461b95e0329ccd3c47e1",
+      "vertices": 4095,
+      "triangles": 7199,
+      "bounds_min": [
+        -0.36000001430511475,
+        -0.009999999776482582,
+        -1.2799999713897705
+      ],
+      "bounds_max": [
+        0.36000001430511475,
+        1.7400000095367432,
+        0.4399999976158142
+      ],
+      "sections": [
+        "QuantizedMesh",
+        "FieldSidecar",
+        "SurfaceReading"
+      ],
+      "file": "macropus-giganteus-lod1.10d",
+      "distance_band_m": "25-90m",
+      "local_url": "/intenteco/macropus-giganteus/dist/lods/macropus-giganteus-lod1.10d",
+      "remote_url": "https://raw.githubusercontent.com/intenteco/macropus-giganteus/main/dist/lods/macropus-giganteus-lod1.10d"
+    },
+    "lod2": {
+      "bytes": 34724,
+      "sha256": "9c2d66bea94b42b8f46909558ff9e3fccbbba446864ecdee6e54ec74ad15701a",
+      "vertices": 1519,
+      "triangles": 2200,
+      "bounds_min": [
+        -0.36000001430511475,
+        -0.009999999776482582,
+        -1.2799999713897705
+      ],
+      "bounds_max": [
+        0.36000001430511475,
+        1.7400000095367432,
+        0.4399999976158142
+      ],
+      "sections": [
+        "QuantizedMesh",
+        "FieldSidecar",
+        "SurfaceReading"
+      ],
+      "file": "macropus-giganteus-lod2.10d",
+      "distance_band_m": ">90m",
+      "local_url": "/intenteco/macropus-giganteus/dist/lods/macropus-giganteus-lod2.10d",
+      "remote_url": "https://raw.githubusercontent.com/intenteco/macropus-giganteus/main/dist/lods/macropus-giganteus-lod2.10d"
+    }
+  }
+}

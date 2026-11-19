@@ -1,0 +1,120 @@
+{
+  "projection": {
+    "bounds_max": [
+      0.36000001430511475,
+      1.7400000095367432,
+      0.4399999976158142
+    ],
+    "bounds_min": [
+      -0.36000001430511475,
+      -0.009999999776482582,
+      -1.2799999713897705
+    ],
+    "camera_aspect": 1.0,
+    "camera_distance": 3.6084418296813965,
+    "camera_fit_margin": 1.0800000429153442,
+    "camera_target": [
+      0.0,
+      0.8650000095367432,
+      -0.41999998688697815
+    ],
+    "colors": "canonical-SurfaceReading",
+    "lighting": {
+      "ambient_intensity": 0.44999998807907104,
+      "clear_color": [
+        0.3400000035762787,
+        0.3400000035762787,
+        0.3400000035762787,
+        1.0
+      ],
+      "direct_intensity": 1.7999999523162842,
+      "environment_additive_fallback_rgb": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "sun_direction": [
+        0.40824830532073975,
+        0.8164966106414795,
+        0.40824830532073975
+      ]
+    },
+    "materials": "canonical-MAT1",
+    "normals": "authored",
+    "requested_camera_distance": 3.6084418296813965,
+    "screen_space_ao_available": true,
+    "screen_space_ao_radius_m": 0.05000000074505806,
+    "screen_space_ao_samples": 12,
+    "screen_space_ao_strength": 0.75,
+    "shadows_available": true,
+    "tangents": "absent-renderer-derived",
+    "texture_coordinates": "absent",
+    "triangle_count": 46152,
+    "vertex_count": 23600,
+    "vertical_tan_half_fov": 0.4142135679721832
+  },
+  "renderer": "QualiaDB webizen-render::VolumetricRenderer / PortalGpu native offscreen path",
+  "schema": "synth.native-10d-preview/v1",
+  "scope": "native readback PNG projection; not model acceptance or an adapter capability receipt",
+  "source": {
+    "bytes": 657856,
+    "path": "\\\\?\\C:\\github\\synth\\production\\intenteco-mgig-11b-r6-mcp\\macropus-giganteus.10d",
+    "sha256": "d90d0da775548e19106c7d04aa16f93ba268779f4439bd47d31c8dde9b72d634"
+  },
+  "textures": {
+    "asset_key": "outputs/macropus-giganteus.10d",
+    "hmc_sha256": "50a10f13d51d8688d55d31cafe52e42c69db078298f6193a6138cdf547365386",
+    "requested": 0,
+    "resident": 0
+  },
+  "views": [
+    {
+      "bytes": 360687,
+      "camera_distance_applied": 3.6084418296813965,
+      "camera_distance_requested": 3.6084418296813965,
+      "camera_pitch": 0.2800000011920929,
+      "camera_target": [
+        0.0,
+        0.8650000095367432,
+        -0.41999998688697815
+      ],
+      "camera_yaw": 0.7200000286102295,
+      "file": "three-quarter-view-assumed.png",
+      "height": 2048,
+      "sha256": "0b00be4cd6f8c15cf18599f84e4f4e71167c77131714e84932205e9eba30409c",
+      "width": 2048
+    },
+    {
+      "bytes": 321312,
+      "camera_distance_applied": 3.6084418296813965,
+      "camera_distance_requested": 3.6084418296813965,
+      "camera_pitch": 0.11999999731779099,
+      "camera_target": [
+        0.0,
+        0.8650000095367432,
+        -0.41999998688697815
+      ],
+      "camera_yaw": 1.5707963705062866,
+      "file": "side-view-assumed.png",
+      "height": 2048,
+      "sha256": "f2340fa3d6e42b033e7a5fc6ad817989575eaf3d077404a75d8481577cffab64",
+      "width": 2048
+    },
+    {
+      "bytes": 292765,
+      "camera_distance_applied": 3.6084418296813965,
+      "camera_distance_requested": 3.6084418296813965,
+      "camera_pitch": 0.11999999731779099,
+      "camera_target": [
+        0.0,
+        0.8650000095367432,
+        -0.41999998688697815
+      ],
+      "camera_yaw": 0.0,
+      "file": "front-view-assumed.png",
+      "height": 2048,
+      "sha256": "696153f618e7b0d79c1e65b627608f5271d8fd9ee7ee3ceddc4d7361d7c6332c",
+      "width": 2048
+    }
+  ]
+}

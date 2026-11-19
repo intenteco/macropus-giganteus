@@ -1,0 +1,231 @@
+module <https://intenteco.org/macropus-giganteus/actuation>;
+import "vibe:0.1/math" as m;
+import "vibe:0.3/nquin" as nquin;
+
+requires [capability("capability.invoke")];
+
+// Macropus giganteus Shaw, 1790 — Eastern Grey Kangaroo Runtime Actuation & Ethogram
+// Implements InstanceState64 ontogenetic stages (pouch_joey .. alpha_boomer_buck),
+// pentapedal grazing vs high-efficiency bipedal saltatorial hopping state machine,
+// Achilles/plantaris elastic energy recovery (k = 62000 N/m, >= 54% recovery),
+// ear-swivel sensory tracking, and aura/pulse runtime hooks.
+
+let parity = nquin.wire.compute_wire_parity([77, 103, 105, 103, 65]);
+
+// Resolve deterministic InstanceState64 ontogenetic stage and morphometric bounds
+pure fn resolve_instance_state64(
+    seed: i64,
+    ontogenetic_age_norm: f64,
+    site_vigor: f64,
+    sex_dimorphism_flag: i64,
+    pouch_occupancy_flag: i64,
+    pelage_silver_shift: f64,
+    forelimb_hypertrophy_01: f64
+) -> Record {
+    let age = m.clamp(ontogenetic_age_norm, 0.0, 1.0);
+    let vigor = m.clamp(site_vigor, 0.45, 1.25);
+    let silver = m.clamp(pelage_silver_shift, -0.15, 0.15);
+    let fore_hyp = m.clamp(forelimb_hypertrophy_01, 0.0, 1.0);
+
+    if age < 0.22 {
+        return {
+            stage_id: "pouch_joey",
+            age_norm: age,
+            height_scale: (0.10 + (age / 0.22) * 0.22) * vigor,
+            independent_locomotion: false,
+            supports_pouch_occupancy: false,
+            pelage_silver_shift: silver,
+            forelimb_hypertrophy_01: 0.0,
+            seed: seed
+        };
+    };
+    if age < 0.42 {
+        let t = (age - 0.22) / 0.20;
+        return {
+            stage_id: "young_at_foot",
+            age_norm: age,
+            height_scale: (0.32 + t * 0.26) * vigor,
+            independent_locomotion: true,
+            supports_pouch_occupancy: false,
+            pelage_silver_shift: silver,
+            forelimb_hypertrophy_01: 0.0,
+            seed: seed
+        };
+    };
+    if age < 0.65 {
+        let t = (age - 0.42) / 0.23;
+        return {
+            stage_id: "subadult_flyer",
+            age_norm: age,
+            height_scale: (0.58 + t * 0.26) * vigor,
+            independent_locomotion: true,
+            supports_pouch_occupancy: false,
+            pelage_silver_shift: silver,
+            forelimb_hypertrophy_01: fore_hyp * 0.25,
+            seed: seed
+        };
+    };
+
+    let t = (age - 0.65) / 0.35;
+    if sex_dimorphism_flag == 1 {
+        return {
+            stage_id: "alpha_boomer_buck",
+            age_norm: age,
+            height_scale: (0.96 + t * 0.29) * vigor,
+            independent_locomotion: true,
+            supports_pouch_occupancy: false,
+            pelage_silver_shift: silver,
+            forelimb_hypertrophy_01: m.clamp(0.45 + 0.55 * fore_hyp, 0.0, 1.0),
+            seed: seed
+        };
+    };
+
+    return {
+        stage_id: "adult_doe",
+        age_norm: age,
+        height_scale: (0.80 + t * 0.16) * vigor,
+        independent_locomotion: true,
+        supports_pouch_occupancy: pouch_occupancy_flag == 1,
+        pelage_silver_shift: silver,
+        forelimb_hypertrophy_01: 0.0,
+        seed: seed
+    };
+}
+
+// Evaluate gastrocnemius & plantaris elastic Achilles tendon recoil energy U = 0.5 * k * dL^2 (k = 62000 N/m)
+pure fn evaluate_achilles_recoil(speed_m_s: f64, crouch_01: f64) -> Record {
+    let k_achilles = 62000.0;
+    let max_strain_m = 0.0245;
+    let drive = m.clamp((speed_m_s - 2.2) / 15.3, 0.0, 1.0);
+    let delta_l = max_strain_m * (0.22 * crouch_01 + 0.78 * drive);
+    let energy_j = 0.5 * k_achilles * delta_l * delta_l;
+    return {
+        k_achilles_n_m: k_achilles,
+        delta_l_m: delta_l,
+        elastic_energy_j: energy_j,
+        recovery_fraction: 0.54 + 0.10 * drive
+    };
+}
+
+// Locomotor state machine + ear-swivel sensory tracking + alarm foot-thump
+effect fn step_pulse(
+    speed_m_s: f64,
+    turn_rate_rad_s: f64,
+    threat_azimuth_rad: f64,
+    threat_01: f64,
+    dt_sec: f64,
+    state64: Record
+) budget(steps: 5000) -> Record {
+    let spd = m.clamp(speed_m_s, 0.0, 17.5);
+    let threat = m.clamp(threat_01, 0.0, 1.0);
+    let az = m.clamp(threat_azimuth_rad, -1.57, 1.57);
+
+    let mut gait_mode = "upright_alert_tripod";
+    let mut macro_state = "alert_scan";
+    let mut cervical_pitch = 0.08;
+    let mut tail_prop_weight = 0.80;
+    let mut crouch_01 = 0.35;
+
+    if !state64.independent_locomotion {
+        gait_mode = "pouch_sheltered";
+        macro_state = "idle";
+        cervical_pitch = -0.05;
+        tail_prop_weight = 0.0;
+        crouch_01 = 0.85;
+    } else if threat > 0.70 && spd >= 3.5 {
+        gait_mode = "saltatorial_hop";
+        macro_state = "saltatorial_hop";
+        cervical_pitch = 0.12;
+        tail_prop_weight = 0.12;
+        crouch_01 = 0.25;
+    } else if spd >= 0.35 && spd <= 1.45 {
+        gait_mode = "pentapedal_graze";
+        macro_state = "grazing";
+        cervical_pitch = -0.42;
+        tail_prop_weight = 1.0;
+        crouch_01 = 0.68;
+    } else if spd > 1.45 {
+        gait_mode = "saltatorial_hop";
+        macro_state = "saltatorial_hop";
+        cervical_pitch = 0.10;
+        tail_prop_weight = 0.15;
+        crouch_01 = 0.28;
+    };
+
+    // Independent asymmetric pinna tracking toward acoustic stimulus
+    let ear_swivel_l = m.clamp(-az * 0.58 - 0.18 * threat, -0.78, 0.78);
+    let ear_swivel_r = m.clamp(az * 0.58 - 0.18 * threat, -0.78, 0.78);
+
+    let rig_step = capability.invoke("hypermedia.kinetics.rig_biomechanical_archetype", {
+        archetype: "macropod_saltatorial",
+        macro_state: macro_state,
+        speed_m_s: spd,
+        turn_rate_rad_s: m.clamp(turn_rate_rad_s, -3.5, 3.5),
+        dt_sec: m.clamp(dt_sec, 0.001, 0.1),
+        head_pitch: cervical_pitch,
+        head_yaw: m.clamp(az * 0.45, -0.78, 0.78),
+        ear_swivel_l: ear_swivel_l,
+        ear_swivel_r: ear_swivel_r,
+        hindlimb_crouch_01: crouch_01,
+        emit_emf_qac: false
+    });
+
+    let nla = capability.invoke("hypermedia.kinetics.evaluate_nla_channelbag", {
+        strips: [
+            {
+                name: "upright_alert_to_graze",
+                start_time: 0.0,
+                end_time: 1.0,
+                weight: 1.0,
+                blend_mode: "replace",
+                start_val: [0.0, 0.14, tail_prop_weight],
+                end_val: [0.0, -0.42, 0.15],
+                transition: "cubic"
+            }
+        ],
+        eval_time: m.clamp(spd / 17.5, 0.0, 1.0)
+    });
+
+    let recoil = evaluate_achilles_recoil(spd, crouch_01);
+
+    return {
+        gait_mode: gait_mode,
+        macro_state: macro_state,
+        cervical_pitch_rad: cervical_pitch,
+        ear_swivel_l_rad: ear_swivel_l,
+        ear_swivel_r_rad: ear_swivel_r,
+        tail_prop_weight: tail_prop_weight,
+        achilles_recoil: recoil,
+        nla_eval: nla,
+        rig: rig_step
+    };
+}
+
+// Aura hook: bio-thermal IR (36.2 C, BMR 49.7 W), forearm evaporative cooling & alarm thump
+effect fn evaluate_aura(
+    bmr_watts: f64,
+    body_temp_c: f64,
+    ambient_temp_c: f64,
+    threat_01: f64
+) budget(steps: 2000) -> Record {
+    let metabolic_gain = m.clamp(bmr_watts / 49.7, 0.5, 1.8);
+    let heat_stress_01 = m.clamp((ambient_temp_c - 28.0) / 14.0, 0.0, 1.0);
+    let alarm_active = threat_01 > 0.65;
+    let thump_amplitude = if alarm_active { 0.88 } else { 0.0 };
+
+    return {
+        body_temp_c: body_temp_c,
+        bmr_watts: bmr_watts,
+        ir_wavelength_nm: 9360.0,
+        metabolic_gain: metabolic_gain,
+        forearm_evaporative_licking_01: heat_stress_01,
+        alarm_thump_active: alarm_active,
+        alarm_thump_amplitude: thump_amplitude,
+        call_fundamental_hz: 165.0
+    };
+}
+
+// Default pulse / aura verification binding for alert adult doe
+let default_state64 = resolve_instance_state64(5219, 0.82, 1.0, 0, 1, 0.02, 0.0);
+let pulse = step_pulse(0.45, 0.02, 0.18, 0.25, 0.033, default_state64);
+let aura = evaluate_aura(49.7, 36.2, 24.0, 0.25);

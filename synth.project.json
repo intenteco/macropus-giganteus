@@ -1,0 +1,11 @@
+{
+  "schema": "synth.project/v1",
+  "name": "macropus-giganteus",
+  "brief": "Macropus giganteus Shaw, 1790 — Eastern Grey Kangaroo hypermedia species repository (South-Eastern Australia corridor). ECO-WP-11A covers ontological, UBERON anatomical, saltatorial/pentapedal biomechanical, allometric, ethological, and biocultural provenance; ECO-WP-11B will produce the 3-layer .vibe CAD and .hmc distribution.",
+  "sources": [
+    "ontology",
+    "source"
+  ],
+  "working": "dossier",
+  "delivered": "dist"
+}
